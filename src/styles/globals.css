@@ -1,0 +1,1156 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* Light mode colors */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #007fd4;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b7280;
+  --accent: #f5f5f5;
+  --accent-foreground: #1a1a1a;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --input-background: #f9fafb;
+  --switch-background: #e5e7eb;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #8b5cf6;
+  --radius: 0.625rem;
+  --sidebar: #f9fafb;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #007fd4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #374151;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #3b82f6;
+  
+  /* Font size scale based on --font-size */
+  --text-xs: calc(var(--font-size) * 0.75);
+  --text-sm: calc(var(--font-size) * 0.875);
+  --text-base: var(--font-size);
+  --text-lg: calc(var(--font-size) * 1.125);
+  --text-xl: calc(var(--font-size) * 1.25);
+  --text-2xl: calc(var(--font-size) * 1.5);
+  --text-3xl: calc(var(--font-size) * 1.875);
+
+  /* Light mode scrollbar colors */
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a8a8a8;
+
+  /* Light mode checkbox colors */
+  --checkbox-background: #ffffff;
+  --checkbox-border: #d1d5db;
+  --checkbox-border-hover: #9ca3af;
+  --checkbox-checked: #007fd4;
+
+  /* Light mode table colors */
+  --table-row-even: #ffffff;
+  --table-row-odd: #f8f9fa;
+  --table-row-hover: #f5f5f5;
+  --table-row-selected: rgba(0, 127, 212, 0.1);
+  --table-row-selected-border: #007fd4;
+
+  /* Light mode sidebar selection colors */
+  --sidebar-selected: rgba(0, 127, 212, 0.15);
+  --sidebar-selected-border: #007fd4;
+
+  /* Light mode filter/button hover colors */
+  --filter-hover: rgba(0, 127, 212, 0.1);
+  --filter-text: #6b7280;
+  --filter-text-hover: #007fd4;
+  --filter-active: #007fd4;
+}
+
+.dark {
+  /* Dark mode colors */
+  --background: #1e1e1e;
+  --foreground: #cccccc;
+  --card: #252526;
+  --card-foreground: #cccccc;
+  --popover: #2d2d30;
+  --popover-foreground: #cccccc;
+  --primary: #007fd4;
+  --primary-foreground: #ffffff;
+  --secondary: #3c3c3c;
+  --secondary-foreground: #cccccc;
+  --muted: #3c3c3c;
+  --muted-foreground: #a0a0a0;
+  --accent: #3c3c3c;
+  --accent-foreground: #cccccc;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ffffff;
+  --border: #3c3c3c;
+  --input: #3c3c3c;
+  --input-background: #2d2d30;
+  --switch-background: #4c4c4c;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #007fd4;
+  --chart-1: #007fd4;
+  --chart-2: #4CAF50;
+  --chart-3: #ff9800;
+  --chart-4: #f44336;
+  --chart-5: #9c27b0;
+  --sidebar: #252526;
+  --sidebar-foreground: #cccccc;
+  --sidebar-primary: #007fd4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #3c3c3c;
+  --sidebar-accent-foreground: #cccccc;
+  --sidebar-border: #3c3c3c;
+  --sidebar-ring: #007fd4;
+
+  /* Dark mode scrollbar colors */
+  --scrollbar-track: #3c3c3c;
+  --scrollbar-thumb: #5a5a5a;
+  --scrollbar-thumb-hover: #6a6a6a;
+
+  /* Dark mode checkbox colors */
+  --checkbox-background: #3c3c3c;
+  --checkbox-border: #4c4c4c;
+  --checkbox-border-hover: #5c5c5c;
+  --checkbox-checked: #007fd4;
+
+  /* Dark mode table colors */
+  --table-row-even: #252526;
+  --table-row-odd: #2d2d30; /* Changed from #2a2a2c to darker color */
+  --table-row-hover: #2d2d30;
+  --table-row-selected: rgba(0, 127, 212, 0.2);
+  --table-row-selected-border: #007fd4;
+
+  /* Dark mode sidebar selection colors */
+  --sidebar-selected: #094771;
+  --sidebar-selected-border: #007fd4;
+
+  /* Dark mode filter/button hover colors */
+  --filter-hover: rgba(0, 127, 212, 0.1);
+  --filter-text: #cccccc;
+  --filter-text-hover: #007fd4;
+  --filter-active: #007fd4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-200;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input, select, textarea {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    table, td, th {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.4;
+    }
+
+    code {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.4;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Custom scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Webkit scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 1px solid var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Override specific dark mode backgrounds for harmonization interface */
+.dark .bg-\[\#1e1e1e\] {
+  background-color: #1e1e1e !important;
+}
+
+.dark .bg-\[\#252526\] {
+  background-color: #252526 !important;
+}
+
+.dark .bg-\[\#2d2d30\] {
+  background-color: #2d2d30 !important;
+}
+
+.dark .bg-\[\#3c3c3c\] {
+  background-color: #3c3c3c !important;
+}
+
+.dark .bg-\[\#2a2a2c\] {
+  background-color: #2d2d30 !important; /* Changed to darker color */
+}
+
+.dark .bg-\[\#094771\] {
+  background-color: #094771 !important;
+}
+
+/* Light mode overrides for harmonization interface */
+.bg-\[\#1e1e1e\] {
+  background-color: var(--background);
+}
+
+.bg-\[\#252526\] {
+  background-color: var(--table-row-even);
+}
+
+.bg-\[\#2d2d30\] {
+  background-color: var(--secondary);
+}
+
+.bg-\[\#3c3c3c\] {
+  background-color: var(--muted);
+}
+
+.bg-\[\#2a2a2c\] {
+  background-color: var(--table-row-odd);
+}
+
+.bg-\[\#094771\] {
+  background-color: var(--sidebar-selected);
+}
+
+/* Light mode hover overrides */
+.dark .hover\:bg-\[\#3c3c3c\]:hover {
+  background-color: #3c3c3c !important;
+}
+
+.dark .hover\:bg-\[\#2d2d30\]:hover {
+  background-color: #2d2d30 !important;
+}
+
+.dark .hover\:bg-\[\#007fd4\]:hover {
+  background-color: #007fd4 !important;
+}
+
+.dark .hover\:bg-\[\#4c4c4c\]:hover {
+  background-color: #4c4c4c !important;
+}
+
+.hover\:bg-\[\#3c3c3c\]:hover {
+  background-color: var(--filter-hover) !important;
+}
+
+.hover\:bg-\[\#2d2d30\]:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+.hover\:bg-\[\#007fd4\]:hover {
+  background-color: #007fd4 !important; /* Keep primary color for both themes */
+}
+
+.hover\:bg-\[\#4c4c4c\]:hover {
+  background-color: var(--filter-hover) !important;
+}
+
+/* Text color overrides */
+.dark .text-\[\#cccccc\] {
+  color: #cccccc !important;
+}
+
+.dark .text-\[\#a0a0a0\] {
+  color: #a0a0a0 !important;
+}
+
+.dark .text-\[\#808080\] {
+  color: #808080 !important;
+}
+
+.dark .text-\[\#4ec9b0\] {
+  color: #4ec9b0 !important;
+}
+
+.text-\[\#cccccc\] {
+  color: var(--foreground);
+}
+
+.text-\[\#a0a0a0\] {
+  color: var(--muted-foreground);
+}
+
+.text-\[\#808080\] {
+  color: var(--muted-foreground);
+}
+
+.text-\[\#4ec9b0\] {
+  color: var(--filter-active);
+}
+
+/* Border color overrides */
+.dark .border-\[\#3c3c3c\] {
+  border-color: #3c3c3c !important;
+}
+
+.dark .border-\[\#4c4c4c\] {
+  border-color: #4c4c4c !important;
+}
+
+.dark .border-\[\#007fd4\] {
+  border-color: #007fd4 !important;
+}
+
+.border-\[\#3c3c3c\] {
+  border-color: var(--border);
+}
+
+.border-\[\#4c4c4c\] {
+  border-color: var(--border);
+}
+
+.border-\[\#007fd4\] {
+  border-color: var(--table-row-selected-border);
+}
+
+/* Selected row styling overrides */
+.dark .bg-\[\#007fd4\]\.bg-opacity-20 {
+  background-color: rgba(0, 127, 212, 0.2) !important;
+}
+
+.bg-\[\#007fd4\]\.bg-opacity-20 {
+  background-color: var(--table-row-selected) !important;
+}
+
+/* Light mode table row styling - specific overrides for data tables */
+:not(.dark) tbody tr:nth-child(odd) {
+  background-color: var(--table-row-even) !important;
+}
+
+:not(.dark) tbody tr:nth-child(even) {
+  background-color: var(--table-row-odd) !important;
+}
+
+:not(.dark) tbody tr:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+/* Dark mode table row styling - fix white rows */
+.dark tbody tr:nth-child(odd) {
+  background-color: var(--table-row-even) !important;
+}
+
+.dark tbody tr:nth-child(even) {
+  background-color: var(--table-row-odd) !important;
+}
+
+.dark tbody tr:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+/* Selected row styling for both modes - REMOVE BLUE BORDER */
+:not(.dark) tbody tr[class*="bg-[#007fd4]"] {
+  background-color: var(--table-row-selected) !important;
+  border-color: transparent !important; /* Remove blue border */
+}
+
+.dark tbody tr[class*="bg-[#007fd4]"] {
+  background-color: var(--table-row-selected) !important;
+  border-color: transparent !important; /* Remove blue border */
+}
+
+/* Fix disabled text colors in light mode */
+.dark .text-\[\#666\] {
+  color: #666 !important;
+}
+
+.text-\[\#666\] {
+  color: #9ca3af;
+}
+
+/* Resizable handle styling fixes for light mode */
+:not(.dark) [data-testid="re-resizable-handle"] {
+  background-color: var(--border) !important;
+}
+
+:not(.dark) .react-resizable-handle {
+  background-color: var(--border) !important;
+}
+
+/* Override re-resizable inline styles for light mode */
+:not(.dark) div[style*="background-color: rgb(60, 60, 60)"] {
+  background-color: var(--border) !important;
+}
+
+:not(.dark) div[style*="backgroundColor: #3c3c3c"] {
+  background-color: var(--border) !important;
+}
+
+/* STRONG CHECKBOX OVERRIDES - Fix light mode checkboxes */
+/* Target all checkboxes with these specific classes */
+:not(.dark) input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\] {
+  background-color: var(--checkbox-background) !important;
+  border-color: var(--checkbox-border) !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+:not(.dark) input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\]:hover {
+  border-color: var(--checkbox-border-hover) !important;
+}
+
+:not(.dark) input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\]:checked {
+  background-color: var(--checkbox-checked) !important;
+  border-color: var(--checkbox-checked) !important;
+}
+
+:not(.dark) input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\]:checked::before {
+  content: '✓';
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+/* Dark mode checkbox styling */
+.dark input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\] {
+  background-color: #3c3c3c !important;
+  border-color: #4c4c4c !important;
+}
+
+.dark input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\]:hover {
+  border-color: #5c5c5c !important;
+}
+
+.dark input[type="checkbox"].bg-\[\#3c3c3c\].border.border-\[\#4c4c4c\]:checked {
+  background-color: #007fd4 !important;
+  border-color: #007fd4 !important;
+}
+
+/* Universal checkbox styling for any remaining checkboxes */
+:not(.dark) input[type="checkbox"] {
+  background-color: var(--checkbox-background) !important;
+  border-color: var(--checkbox-border) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+
+:not(.dark) input[type="checkbox"]:hover {
+  border-color: var(--checkbox-border-hover) !important;
+}
+
+:not(.dark) input[type="checkbox"]:checked {
+  background-color: var(--checkbox-checked) !important;
+  border-color: var(--checkbox-checked) !important;
+}
+
+.dark input[type="checkbox"] {
+  background-color: var(--checkbox-background) !important;
+  border-color: var(--checkbox-border) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+
+.dark input[type="checkbox"]:hover {
+  border-color: var(--checkbox-border-hover) !important;
+}
+
+.dark input[type="checkbox"]:checked {
+  background-color: var(--checkbox-checked) !important;
+  border-color: var(--checkbox-checked) !important;
+}
+
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Checkbox checkmark styling */
+input[type="checkbox"] {
+  position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* FILTER ICON HOVER FIXES - Consistent Blue for Both Themes */
+/* Filter button hovers - blue for both themes */
+button[class*="hover:bg-[#007fd4]"]:hover {
+  background-color: var(--filter-hover) !important;
+  color: var(--filter-text-hover) !important;
+}
+
+button[class*="hover:text-[#007fd4]"]:hover {
+  color: var(--filter-text-hover) !important;
+}
+
+/* Filter dropdown item hovers - blue for both themes */
+[class*="hover:bg-[#007fd4]"]:hover {
+  background-color: var(--filter-hover) !important;
+}
+
+/* FIX REMAINING LIGHT MODE HOVER ISSUES */
+/* DataMappingSection filter and search button hovers */
+:not(.dark) .bg-\[\#3c3c3c\].hover\:bg-\[\#4c4c4c\]:hover {
+  background-color: var(--filter-hover) !important;
+}
+
+:not(.dark) .hover\:border-\[\#007fd4\]:hover {
+  border-color: var(--primary) !important;
+}
+
+/* RESIZABLE HANDLE STYLING */
+/* Style for resizable handles */
+.resize-handle {
+  background-color: var(--border);
+  transition: background-color 0.2s ease;
+}
+
+.resize-handle:hover {
+  background-color: var(--primary);
+}
+
+/* SIDEBAR WIDTH CONSTRAINTS */
+/* Gentle constraints for very large screens - doesn't interfere with resizing */
+@media (min-width: 2560px) {
+  [data-panel-group-direction="horizontal"] [data-panel]:first-child {
+    max-width: 600px;
+  }
+  
+  [data-panel-group-direction="horizontal"] [data-panel]:last-child {
+    max-width: 600px;
+  }
+}
+
+/* Ensure sidebars have reasonable minimum content width */
+[data-panel-group-direction="horizontal"] [data-panel] .sidebar-content {
+  min-width: 180px;
+  max-width: 100%;
+}
+
+/* Specific styling for ResizableHandle components */
+[role="separator"][data-orientation="vertical"] {
+  background-color: var(--border) !important;
+  transition: background-color 0.2s ease !important;
+  cursor: col-resize !important;
+}
+
+[role="separator"][data-orientation="vertical"]:hover {
+  background-color: var(--primary) !important;
+}
+
+/* Override any dark mode specific handle colors */
+.dark [role="separator"][data-orientation="vertical"] {
+  background-color: #3c3c3c !important;
+}
+
+.dark [role="separator"][data-orientation="vertical"]:hover {
+  background-color: #007fd4 !important;
+}
+
+/* Light mode handle colors */
+:not(.dark) [role="separator"][data-orientation="vertical"] {
+  background-color: #e5e7eb !important;
+}
+
+:not(.dark) [role="separator"][data-orientation="vertical"]:hover {
+  background-color: #007fd4 !important;
+}
+
+/* LINE CLAMP UTILITIES */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* PREVENT TEXT SELECTION ON DOUBLE CLICK */
+/* Prevent text selection in sidebar file/dictionary names on double-click */
+.sidebar-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Apply to all clickable sidebar items */
+[role="button"],
+.cursor-pointer {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Specifically target sidebar file/dictionary components */
+.sidebar-file-item,
+.sidebar-dictionary-item,
+.sidebar-dataset-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Add to all elements in sidebars to prevent selection */
+[class*="sidebar"] * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in inputs and text areas */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* PROJECT SELECTION MODAL ANIMATION */
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content {
+  animation: modalShow 200ms ease-out;
+}
+
+/* FILTER DROPDOWN POSITIONING AND THEMING */
+/* Ensure filter dropdowns stay within the viewport */
+th .relative {
+  position: relative;
+  overflow: visible;
+}
+
+/* Table header container needs proper overflow handling */
+thead th {
+  position: relative;
+  overflow: visible;
+  z-index: 10;
+}
+
+/* Main content container must handle overflow properly for filter positioning */
+.table-container {
+  position: relative;
+  isolation: isolate; /* Create new stacking context */
+}
+
+.table-container .overflow-x-auto {
+  position: relative;
+}
+
+/* Filter dropdown - COMPLETELY REWRITTEN for proper theming */
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  z-index: 1050; /* High z-index to stay above everything */
+  min-width: 200px;
+  max-width: 300px;
+  
+  /* Use CSS variables for proper theming */
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  
+  /* Theme-aware shadows */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Ensure dropdown doesn't overflow right edge */
+  transform: translateX(0);
+}
+
+/* Dark mode shadow adjustment */
+.dark .filter-dropdown {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Adjust positioning for dropdowns in last few columns */
+th:nth-last-child(-n+2) .filter-dropdown {
+  right: 0;
+  left: auto;
+}
+
+/* For very narrow screens, center the dropdown */
+@media (max-width: 768px) {
+  .filter-dropdown {
+    right: 50%;
+    transform: translateX(50%);
+    left: auto;
+  }
+}
+
+/* Specific table container scrolling behavior */
+.table-scroll-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Allow dropdowns to extend outside scroll container when needed */
+.table-container {
+  overflow: visible;
+}
+
+/* Ensure table headers stay sticky even with overflow visible */
+.table-container thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Enhanced table container for dictionary viewer - REMOVED CONFLICTING RULES */
+
+/* AI Button Magic Effects */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* AI button magical styling */
+.ai-button {
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,
+    #a855f7,
+    #c084fc,
+    #a855f7,
+    #8b5cf6
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.ai-button .sparkles-icon {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* STARTUP SCREEN ANIMATIONS */
+/* Custom radial gradient background */
+.bg-radial-gradient {
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(30, 30, 30, 0.4) 100%);
+}
+
+/* Additional startup screen animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 127, 212, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 127, 212, 0.6), 0 0 60px rgba(0, 127, 212, 0.3);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glow-animation {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* STARTUP SCREEN KEYWORD ANIMATIONS */
+@keyframes keyword-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-20deg) translateY(50px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) rotate(0deg) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0px);
+  }
+}
+
+@keyframes keyword-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.05) rotate(5deg) translateY(-5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(20deg) translateY(-50px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes keyword-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes subtle-glow {
+  0%, 100% {
+    opacity: 0.1;
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 0.3;
+    filter: blur(4px);
+  }
+}
+
+.keyword-entrance {
+  animation: keyword-entrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.keyword-exit {
+  animation: keyword-exit 0.6s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+.keyword-gradient {
+  background: linear-gradient(45deg, #007fd4, #4CAF50, #007fd4);
+  background-size: 200% 100%;
+  animation: gradient-shift 2s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.keyword-float {
+  animation: keyword-float 3s ease-in-out infinite;
+}
+
+.keyword-glow {
+  animation: subtle-glow 2s ease-in-out infinite;
+}
+
+/* MEGA SHINE EFFECT FOR STARTUP COMPLETION */
+@keyframes mega-shine {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes logo-super-glow {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 127, 212, 0.3);
+    transform: scale(1);
+  }
+  25% {
+    box-shadow: 0 0 60px rgba(0, 127, 212, 0.8), 0 0 100px rgba(76, 175, 80, 0.6);
+    transform: scale(1.05);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(76, 175, 80, 0.9), 0 0 120px rgba(0, 127, 212, 0.7), 0 0 160px rgba(76, 175, 80, 0.5);
+    transform: scale(1.1);
+  }
+  75% {
+    box-shadow: 0 0 60px rgba(0, 127, 212, 0.8), 0 0 100px rgba(76, 175, 80, 0.6);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 127, 212, 0.3);
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle-burst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes title-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.mega-shine {
+  animation: mega-shine 1.5s ease-out forwards;
+}
+
+.logo-super-glow {
+  animation: logo-super-glow 2s ease-in-out forwards;
+}
+
+.sparkle-burst {
+  animation: sparkle-burst 1.5s ease-out forwards;
+}
+
+.title-shimmer {
+  background: linear-gradient(45deg, #007fd4, #4CAF50, #007fd4);
+  background-size: 200% 100%;
+  animation: title-shimmer 2s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+

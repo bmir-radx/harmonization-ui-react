@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Harmonization Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #171c26;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .table-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .table-header {
+            background-color: rgba(244, 247, 252, 0.75);
+            backdrop-filter: blur(4px);
+            padding: 12px 16px;
+            border-bottom: 1px solid #e9edf5;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            background-color: #ffffff;
+            border: 1px solid rgba(70, 79, 96, 0.16);
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-table {
+            background-color: #ffffff;
+            border: 1px solid rgba(104, 113, 130, 0.16);
+            border-radius: 6px;
+            padding: 4px 10px;
+            width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-table input {
+            border: none;
+            outline: none;
+            flex: 1;
+            color: #a1a9b8;
+            font-size: 14px;
+        }
+
+        .ready-btn {
+            background-color: #007fd4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .ready-btn:hover {
+            background-color: #005fa3;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-column-header {
+            background-color: #f9fafc;
+            height: 32px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #464f60;
+            text-transform: uppercase;
+            letter-spacing: 0.44px;
+            padding: 0 12px;
+            border-bottom: 1px solid #e9edf5;
+        }
+
+        .table-row {
+            height: 32px;
+            border-bottom: 1px solid #e9edf5;
+            cursor: pointer;
+        }
+
+        .table-row:nth-child(even) {
+            background-color: #f9fafc;
+        }
+
+        .table-row.selected {
+            background-color: #e3f2fd;
+        }
+
+        .table-row:hover:not(.disabled) {
+            background-color: #f0f0f0;
+        }
+
+        .table-row.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .table-cell {
+            padding: 0 12px;
+            color: #171c26;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        .table-cell.id {
+            font-weight: 500;
+            width: 50px;
+        }
+
+        .table-cell.dataset {
+            font-weight: 500;
+            width: 120px;
+        }
+
+        .table-cell.element {
+            color: #464f60;
+            width: 130px;
+        }
+
+        .table-cell.rule {
+            color: #464f60;
+            width: 160px;
+        }
+
+        .table-cell.target {
+            color: #464f60;
+            width: 130px;
+        }
+
+        .table-cell.status {
+            width: 40px;
+            text-align: center;
+        }
+
+        /* Default checkbox styling - removing custom colors */
+        .table-checkbox {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            accent-color: #007fd4;
+        }
+
+        .table-checkbox:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Status icons */
+        .status-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .status-success {
+            fill: #22c55e;
+        }
+
+        .status-warning {
+            fill: #ef4444;
+        }
+
+        .search-placeholder {
+            background-color: #ffffff;
+            border: 1px solid rgba(104, 113, 130, 0.16);
+            border-radius: 6px;
+            padding: 2px 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .search-placeholder span {
+            color: #a1a9b8;
+        }
+
+        /* Compact design adjustments */
+        .table-header {
+            padding: 8px 16px;
+        }
+
+        .table-column-header {
+            height: 28px;
+            padding: 0 12px;
+            font-size: 10px;
+        }
+
+        .table-row {
+            height: 28px;
+        }
+
+        .table-cell {
+            padding: 0 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <div class="table-header">
+            <button class="filter-btn">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M13.79 2.62C14.3 1.96 13.84 1 13 1H3C2.17 1 1.7 1.96 2.21 2.62L7.04 8.73C7.18 8.9 7.25 9.12 7.25 9.34V14.8C7.25 14.97 7.47 15.06 7.59 14.94L8.61 13.93C8.7 13.83 8.75 13.7 8.75 13.57V9.34C8.75 9.12 8.83 8.9 8.96 8.73L13.79 2.62Z" fill="#464F60"/>
+                </svg>
+            </button>
+            <div class="search-table">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M10.68 11.75C9.67 12.54 8.39 13.01 7 13.01C3.69 13.01 1 10.32 1 7C1 3.69 3.69 1 7 1C10.32 1 13 3.69 13 7C13 8.39 12.53 9.67 11.74 10.68L14.78 13.72C15.07 14.01 15.07 14.49 14.78 14.78C14.49 15.07 14.01 15.07 13.72 14.78L10.68 11.75Z" fill="#868FA0"/>
+                </svg>
+                <input type="text" placeholder="Search..." id="searchInput">
+            </div>
+            <button class="ready-btn">Ready</button>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th class="table-column-header" style="width: 40px;">
+                        <input type="checkbox" class="table-checkbox" id="select-all">
+                    </th>
+                    <th class="table-column-header">#</th>
+                    <th class="table-column-header">Data Set</th>
+                    <th class="table-column-header">Source Data Element</th>
+                    <th class="table-column-header">Harmonization Rule</th>
+                    <th class="table-column-header">Target Data Element</th>
+                    <th class="table-column-header" style="width: 40px;">Status</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body">
+                <!-- Rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Sample data
+        const tableData = [
+            { id: '1', dataset: 'Dataset 1', element: 'age', rule: 'age → nih_age', target: 'nih_age', hasRule: true },
+            { id: '2', dataset: 'Dataset 1', element: 'education', rule: '', target: 'nih_education', hasRule: false },
+            { id: '3', dataset: 'Dataset 1', element: 'diabetes', rule: '', target: '', hasRule: false, hasError: true },
+            { id: '4', dataset: 'Dataset 1', element: 'hypertension', rule: '', target: '', hasRule: false, hasError: true },
+            { id: '5', dataset: 'Dataset 1', element: 'drug_use', rule: '', target: '', hasRule: false, hasError: true },
+            { id: '6', dataset: 'Dataset 2', element: 'age', rule: 'Research Test Assigned', target: 'BEST', hasRule: true }
+        ];
+
+        let selectedRows = new Set();
+        let selectedRow = null;
+
+        function initializeTable() {
+            const tbody = document.getElementById('data-table-body');
+            const selectAllCheckbox = document.getElementById('select-all');
+
+            // Clear existing rows
+            tbody.innerHTML = '';
+
+            // Create rows
+            tableData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'table-row';
+                tr.dataset.id = row.id;
+
+                const isDisabled = !row.target || row.hasError;
+                if (isDisabled) {
+                    tr.classList.add('disabled');
+                }
+
+                // Determine rule status
+                let ruleContent = '';
+                if (row.hasError) {
+                    ruleContent = '<svg class="status-icon status-warning" viewBox="0 0 24 24"><path d="M12 17C12.28 17 12.52 16.9 12.71 16.71C12.9 16.52 13 16.28 13 16C13 15.72 12.9 15.48 12.71 15.29C12.52 15.1 12.28 15 12 15C11.72 15 11.48 15.1 11.29 15.29C11.1 15.48 11 15.72 11 16C11 16.28 11.1 16.52 11.29 16.71C11.48 16.9 11.72 17 12 17ZM11 13H13V7H11V13ZM12 22C10.62 22 9.32 21.74 8.1 21.21C6.88 20.69 5.83 19.98 4.93 19.08C4.03 18.18 3.31 17.12 2.79 15.9C2.26 14.68 2 13.38 2 12C2 10.62 2.26 9.32 2.79 8.1C3.31 6.88 4.03 5.83 4.93 4.93C5.83 4.03 6.88 3.31 8.1 2.79C9.32 2.26 10.62 2 12 2C13.38 2 14.68 2.26 15.9 2.79C17.12 3.31 18.18 4.03 19.08 4.93C19.98 5.83 20.69 6.88 21.21 8.1C21.74 9.32 22 10.62 22 12C22 13.38 21.74 14.68 21.21 15.9C20.69 17.12 19.98 18.18 19.08 19.08C18.18 19.98 17.12 20.69 15.9 21.21C14.68 21.74 13.38 22 12 22Z"/></svg>';
+                } else {
+                    ruleContent = row.rule;
+                }
+
+                // Determine target content
+                let targetContent = '';
+                if (row.hasError && !row.target) {
+                    targetContent = `
+                        <div class="search-placeholder">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M10.68 11.75C9.67 12.54 8.39 13.01 7 13.01C3.69 13.01 1 10.32 1 7C1 3.69 3.69 1 7 1C10.32 1 13 3.69 13 7C13 8.39 12.53 9.67 11.74 10.68L14.78 13.72C15.07 14.01 15.07 14.49 14.78 14.78C14.49 15.07 14.01 15.07 13.72 14.78L10.68 11.75Z" fill="#868FA0"/>
+                            </svg>
+                            <span>Search...</span>
+                        </div>
+                    `;
+                } else {
+                    targetContent = row.target;
+                }
+
+                // Determine status icon
+                let statusIcon = '';
+                if (row.target && !row.hasError) {
+                    if (row.hasRule && row.rule) {
+                        // Green checkmark for defined rule
+                        statusIcon = '<svg class="status-icon status-success" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>';
+                    } else {
+                        // Red warning for no rule
+                        statusIcon = '<svg class="status-icon status-warning" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>';
+                    }
+                }
+
+                tr.innerHTML = `
+                    <td class="table-cell">
+                        <input type="checkbox" class="table-checkbox row-checkbox" ${isDisabled ? 'disabled' : ''} data-row-id="${row.id}">
+                    </td>
+                    <td class="table-cell id">${row.id}</td>
+                    <td class="table-cell dataset">${row.dataset}</td>
+                    <td class="table-cell element">${row.element}</td>
+                    <td class="table-cell rule">${ruleContent}</td>
+                    <td class="table-cell target">${targetContent}</td>
+                    <td class="table-cell status">${statusIcon}</td>
+                `;
+
+                // Add click handler for row selection
+                if (!isDisabled) {
+                    tr.addEventListener('click', function(e) {
+                        if (e.target.type === 'checkbox') return;
+                        selectRow(this, row);
+                    });
+                }
+
+                tbody.appendChild(tr);
+            });
+
+            // Setup checkbox event handlers
+            setupCheckboxHandlers();
+        }
+
+        function setupCheckboxHandlers() {
+            const selectAllCheckbox = document.getElementById('select-all');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+            // Select all functionality
+            selectAllCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+                rowCheckboxes.forEach(checkbox => {
+                    if (!checkbox.disabled) {
+                        checkbox.checked = isChecked;
+                        if (isChecked) {
+                            selectedRows.add(checkbox.dataset.rowId);
+                        } else {
+                            selectedRows.delete(checkbox.dataset.rowId);
+                        }
+                    }
+                });
+            });
+
+            // Individual checkbox functionality
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    const rowId = this.dataset.rowId;
+                    
+                    if (this.checked) {
+                        selectedRows.add(rowId);
+                    } else {
+                        selectedRows.delete(rowId);
+                    }
+
+                    updateSelectAllState();
+                });
+            });
+        }
+
+        function updateSelectAllState() {
+            const selectAllCheckbox = document.getElementById('select-all');
+            const enabledCheckboxes = document.querySelectorAll('.row-checkbox:not(:disabled)');
+            const checkedBoxes = document.querySelectorAll('.row-checkbox:not(:disabled):checked');
+            
+            if (checkedBoxes.length === 0) {
+                selectAllCheckbox.indeterminate = false;
+                selectAllCheckbox.checked = false;
+            } else if (checkedBoxes.length === enabledCheckboxes.length) {
+                selectAllCheckbox.indeterminate = false;
+                selectAllCheckbox.checked = true;
+            } else {
+                selectAllCheckbox.indeterminate = true;
+                selectAllCheckbox.checked = false;
+            }
+        }
+
+        function selectRow(rowElement, rowData) {
+            // Remove previous selection
+            document.querySelectorAll('.table-row.selected').forEach(row => {
+                row.classList.remove('selected');
+            });
+
+            // Add selection to clicked row
+            rowElement.classList.add('selected');
+            selectedRow = rowData;
+
+            console.log('Selected row:', selectedRow);
+            // Here you can add code to update the harmonization steps panel
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('.table-row');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize the table when the page loads
+        document.addEventListener('DOMContentLoaded', initializeTable);
+    </script>
+</body>
+</html>
